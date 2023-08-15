@@ -5,4 +5,12 @@
 
 ## II.Steps:
 **1. retrieve data 取数**
+
    通过tushare接口获取股票的交易和财务数据，指数的成分股，基金的净值和持仓数据
+  **input files:**
+  i) index_list.xlsx : 关注的指数列表
+  ii) fund_name_list.csv : 关注的基金列表
+
+  **output files:**
+  i) index_components.xlsx： 关注指数的成分股
+  ii) index_weekly_trade_data.csv: 指数周交易数据
