@@ -8,7 +8,7 @@ from datetime import datetime,timedelta
 ######### I.Setting #########
 
 ### I.1 work directory
-dir='./'
+dir='./data/'
 
 ### I.2 read data
 index_list=pd.read_excel(dir+'index_list.xlsx')
