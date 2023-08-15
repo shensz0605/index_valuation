@@ -9,9 +9,14 @@
    通过tushare接口获取股票的交易和财务数据，指数的成分股，基金的净值和持仓数据.  
   **input files:**  
   i) index_list.xlsx : 关注的指数列表  
-  ii) fund_name_list.csv : 关注的基金列表  
 
   **output files:**  
-  i) index_components.xlsx： 关注指数的成分股
-  ii) index_weekly_trade_data.csv: 指数周交易数据
-  iii) stock_daily_metric.csv: 股票
+  i) index_components.xlsx： 关注指数的成分股  
+  ii) index_weekly_trade_data.csv: 指数周交易数据  
+  iii) stock_daily_metric.csv: 股票  
+  iv) stock_basic.csv: 股票基础信息  
+  v) stock_earning.csv： 股票盈利数据  
+  vi) stock_balancesheet.csv：股票资产负债表数据  
+  vii) fund_name_list.csv : 基金列表  
+  viii) fund_holdings.csv: 基金持仓数据  
+  ix) fund_nav.csv: 基金净值数据  
