@@ -42,7 +42,7 @@ del df_index_components['代码']
 df_index_components.to_excel(dir+'index_components.xlsx',index=False)
 
 
-### II.3 指数交易数据
+### II.3 获取指数交易数据
 
 try:
     df_index_trade_data=pd.read_csv(dir+'index_weekly_trade_data.csv',converters={'trade_date':str})
@@ -67,7 +67,6 @@ df_index_trade_data.drop_duplicates().to_csv(dir+'index_weekly_trade_data.csv',i
 df_index_components=pd.read_excel(dir+'index_components.xlsx')
 con_list=sorted(list(set(df_index_components['con_code'])))
 
-
 df_daily_metrics=pd.DataFrame()
 
 for i in range(0,len(con_list),50):
@@ -77,14 +76,12 @@ for i in range(0,len(con_list),50):
         df_daily_metrics=pd.concat([df_daily_metrics,tmp])
     time.sleep(10)
 
-
 df_daily_metrics['trade_date2']=pd.to_datetime(df_daily_metrics['trade_date'])
 df_daily_metrics['trade_week']=df_daily_metrics['trade_date2'].apply(lambda x:x.isocalendar().week)
 df_daily_metrics['trade_month']=df_daily_metrics['trade_date2'].apply(lambda x:x.month)
 df_daily_metrics['trade_year']=df_daily_metrics['trade_date2'].apply(lambda x:x.isocalendar().year)
 
 del df_daily_metrics['trade_date2']
-
 
 df_daily_metrics_total=pd.read_csv(dir+'stock_daily_metric.csv',converters={'trade_date':str})
 df_daily_metrics_total=pd.concat([df_daily_metrics_total,df_daily_metrics])
@@ -97,7 +94,6 @@ df_daily_metrics_total.drop_duplicates().to_csv(dir+'stock_daily_metric.csv',ind
 
 df_stock_basic= pro.stock_basic(exchange='',fields='ts_code,symbol,name,area,industry,list_date')
 df_stock_basic.drop_duplicates().to_csv(dir+'stock_basic.csv',index=False)
-
 
 ### III.3 获取财务数据
 df_stock_earning=pd.DataFrame()
@@ -125,7 +121,6 @@ for i in range(0,len(con_list),50):
 df_stock_bs.to_csv(dir + 'stock_balancesheet.csv',index=False)
 
 
-
 ######### IV.获取基金数据 #########
 
 ### IV.1 公募基金列表
@@ -133,13 +128,13 @@ today = datetime.today()
 dt_L1Yr=(today + timedelta(days=-360)).strftime('%Y%m%d')
 
 df_fund_list=pro.fund_basic(market='O')
+#1) 限制股票型和混合型基金; 2) 排除C类基金
 df_fund_list['C_flg']=df_fund_list['name'].apply(lambda x:1 if x[-1]=='C' else 0)
-df_fund_list=df_fund_list[(df_fund_list['fund_type'].isin(['混合型', '股票型']))&(df_fund_list['status']!='D')&(df_fund_list['issue_date']<=dt_L1Yr)&(df_fund_list['C_flg']!=1)].rename(columns={'name':'fund_name'}).reset_index(drop=True)
+df_fund_list=df_fund_list[(df_fund_list['fund_type'].isin(['混合型', '股票型']))&(df_fund_list['status']!='D')&(df_fund_list['issue_date']<=dt_L1Yr)&(df_fund_list['C_flg']!=1)].rename(columns={'name':'fund_name'}).reset_index(drop=True) 
 
 df_fund_list.to_csv(dir+'fund_name_list.csv',index=False)
 
 df_fund_list.shape
-
 
 ### IV.2 基金持仓 -- 季度更新
 df_fund_list=pd.read_csv(dir+'fund_name_list.csv')
