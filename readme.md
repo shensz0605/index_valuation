@@ -7,6 +7,7 @@
 ### 1. retrieve_data 取数
 
    通过tushare接口获取股票的交易和财务数据，指数的成分股，基金的净值和持仓数据.  
+   
   **input files:**  
   i) index_list.xlsx : 关注指数列表  
 
@@ -22,7 +23,8 @@
   ix) fund_nav.csv: 基金净值数据  
 
 ### 2. calc_metrics 指标计算  
-计算stock，index level的估值指标  
+计算stock level和index level的估值指标  
+
 **input files:**  
 i) index_list.xlsx: 关注指数列表  
 ii) index_components.xlsx: 关注指数的成分股  
@@ -31,4 +33,10 @@ iv) stock_daily_metric.csv: 股票日指标
 v) stock_basic.csv: 股票基础信息  
 vi) fund_name_list.csv: 基金列表  
 vii) fund_holdings.csv: 基金持仓数据  
-viii) fund_nav.csv:  基金净值数据
+viii) fund_nav.csv:  基金净值数据  
+
+**output files:**  
+i) stock_weekly_metric.csv: 股票周指标  
+ii) index_weekly_metric.csv: 指数周指标  
+iii) fund_index_pct.csv: 基金指数成分
+
