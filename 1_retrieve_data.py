@@ -13,7 +13,7 @@ pro = ts.pro_api('8dda511a93baabfcb8a07fe88ca4d629bc5257cef10fa744cc2a83e1')
 
 
 ### work directory
-dir='./'
+dir='./data/'
 
 ### 时间设置
 start_dt='20200512'
